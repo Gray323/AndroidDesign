@@ -1,4 +1,4 @@
-package com.example.gray.androiddesign.replace;
+package com.example.gray.androiddesign.Test1.last;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
  * Created by Gray on 2017/10/8.
  */
 
-public class ImageLoader {
+public final class ImageLoader {
     //图片缓存
     ImageCache mImageCache = new MemoryCache();
     //线程池

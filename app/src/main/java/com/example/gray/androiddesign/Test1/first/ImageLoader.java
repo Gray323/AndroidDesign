@@ -1,4 +1,4 @@
-package com.example.gray.androiddesign;
+package com.example.gray.androiddesign.Test1.first;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

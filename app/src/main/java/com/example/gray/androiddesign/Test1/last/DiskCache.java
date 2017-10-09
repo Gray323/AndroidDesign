@@ -1,42 +1,33 @@
-package com.example.gray.androiddesign;
+package com.example.gray.androiddesign.Test1.last;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 
 /**
  * Created by Gray on 2017/10/8.
  */
 
-public class DiskCache {
+public class DiskCache implements ImageCache{
     static String cacheDir = "sdcard/cache/";
 
-    //从缓存中获取图片
-    public Bitmap get(String url){
+    @Override
+    public Bitmap get(String url) {
         return BitmapFactory.decodeFile(cacheDir + url);
     }
 
-    //将图片缓存到内存中
-    public void put(String url, Bitmap bmp){
+    @Override
+    public void put(String url, Bitmap bitmap) {
         FileOutputStream fileOutputStream = null;
         try {
             fileOutputStream = new FileOutputStream(cacheDir + url);
-            bmp.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }finally {
-            if (fileOutputStream != null){
-                try {
-                    fileOutputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            CloseUtils.closeQuietly(fileOutputStream);
         }
     }
-
-
 }

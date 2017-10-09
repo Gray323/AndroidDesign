@@ -1,4 +1,4 @@
-package com.example.gray.androiddesign.replace;
+package com.example.gray.androiddesign.Test1.first;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,20 +11,20 @@ import java.io.IOException;
  * Created by Gray on 2017/10/8.
  */
 
-public class DiskCache implements ImageCache{
+public class DiskCache {
     static String cacheDir = "sdcard/cache/";
 
-    @Override
-    public Bitmap get(String url) {
+    //从缓存中获取图片
+    public Bitmap get(String url){
         return BitmapFactory.decodeFile(cacheDir + url);
     }
 
-    @Override
-    public void put(String url, Bitmap bitmap) {
+    //将图片缓存到内存中
+    public void put(String url, Bitmap bmp){
         FileOutputStream fileOutputStream = null;
         try {
             fileOutputStream = new FileOutputStream(cacheDir + url);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
+            bmp.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }finally {
@@ -37,4 +37,6 @@ public class DiskCache implements ImageCache{
             }
         }
     }
+
+
 }
